@@ -1,13 +1,15 @@
+//3rd party software that we will use
 const express = require('express');
 const ejs = require('ejs');
-const app = express()
 const mongoose = require('mongoose');
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+
+//settings for our app
+const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.set('view engine', ejs)
 app.use(express.static("public"))
+app.set('view engine', ejs)
 
 var students = [
   {id:1, name:"Humble Galka", spiritAnimal:"shark"},
@@ -20,22 +22,15 @@ var students = [
 /* 1
 write a route that handles a "get" at the 
 root of the application and renders the 
-"index.ejs" for the client along with a message
+"index.ejs" for the client along with the message
+"hello world"
 */
-app.get('/', (req,res) => {
-  console.log("home")
-  res.render("index.ejs", {message:"hello world"})
-})
 
 /* 2
 write a route that handles a "get" at the 
 path "list" and renders the file "index.ejs".
 also send the "students" array to the client
 */
-app.get('/list', (req,res) => {
-  console.log("list")
-  res.render("list.ejs",{students:students})
-})
 
 
 app.listen(3000, () => {
